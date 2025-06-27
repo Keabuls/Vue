@@ -15,13 +15,9 @@
   </style>
   <body>
     <div id="app">
-        <a href="youtube.com" class="btn" v-on:click.prevent="BtnClk('A')">Kick</a>
-      <div class="btn" v-on:click.once="BtnClk('DİV')">
-        asd
-        <button class="btn" v-on:click.stop="BtnClk('BTN')">
-          Tıkla gardaş
-        </button>
-      </div>
+      <input type="text" v-on:keyup.enter="sbmt" />
+
+      <button class="btn" v-on:click.stop="BtnClk('BTN')">Tıkla gardaş</button>
 
       <h1>Pointer's coordinates</h1>
       <p>x: {{x}} y: {{y}}</p>
@@ -34,16 +30,23 @@
         let x = ref(0);
         let y = ref(0);
 
+        function sbmt(){
+            console.log(this)
+            
+        }
+
         function BtnClk(Msg, $event) {
           x.value = event.x;
           y.value = event.y;
-          alert(Msg)
+          alert(Msg);
         }
 
         return {
           BtnClk,
           x,
           y,
+          sbmt,
+
         };
       },
     }).mount("#app");
