@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <span v-html="getMessage()"></span>
+      <p>Random Lucky Numbers : {{randomLucky()}}</p>
+      <p>Lucky Numbers : {{luckyNumbers}}</p>
+      <p>{{employee.name}} is {{employee.age}} years old.</p>
+      <p>His monthly salary is {{employee.salary}}TL</p>
+      <p>His yearly salary is {{employee.salary * number}}TL</p>
+      <a v-bind:href="blogUrl">a</a>
+      <p v-show="employee.Limitgoster" >çalışan kredi kartı limit: {{employee.kklimit}} TL show</p> <!-- Display none -->
+      <p v-if="employee.Limitgoster" >çalışan kredi kartı limit: {{employee.kklimit}} TL if</p>
+      <p v-else-if="employee.salary>500000 && employee.süre>=3">Şirket kartı alabilir</p>
+      <p v-else="employee.Limitgoster">Şirket kartı alamaz</p>
+      <p v-for="(Luckynumber,index) in luckyNumbers">Lucky Number {{index+1}}: {{Luckynumber}}</p>
+    </div>
+  </body>
+  <script>
+    const { createApp, ref, reactive } = Vue;
+    createApp({
+      setup() {
+        let message = "Hello Vue3";
+        let number = ref(1);
+        const luckyNumbers = [3, 5, 6, 7, 8, 10];
+        const blogUrl = "https://vuejs.org";
+        const employee = reactive({
+          name: "Kaan",
+          age: 21,
+          salary: 1000000,
+          süre:3,
+          Limitgoster:false, /* false'ken gosterilmez,true'ken gosterilir */
+          kklimit:99999,
+        });
+
+        function randomLucky() {
+          employee.name = "Ali";
+          number.value = 12;
+          return Math.ceil(Math.random() * 10);
+        }
+
+        const oddOreven = (a) =>
+          a % 2 ? `${a} is odd number` : `${a} is even number`;
+
+        function getMessage() {
+          return `<h1><u>${message}</u></h1> `;
+        }
+
+        return {
+          number,
+          message,
+          luckyNumbers,
+          employee,
+          oddOreven,
+          getMessage,
+          randomLucky,
+          blogUrl,
+        };
+      },
+    }).mount("#app");
+  </script>
+</html>

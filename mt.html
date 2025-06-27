@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <style>
+    .btn {
+      width: 500px;
+      height: 50px;
+      background-color: violet;
+    }
+  </style>
+  <body>
+    <div id="app">
+        <a href="youtube.com" class="btn" v-on:click.prevent="BtnClk('A')">Kick</a>
+      <div class="btn" v-on:click.once="BtnClk('DİV')">
+        asd
+        <button class="btn" v-on:click.stop="BtnClk('BTN')">
+          Tıkla gardaş
+        </button>
+      </div>
+
+      <h1>Pointer's coordinates</h1>
+      <p>x: {{x}} y: {{y}}</p>
+    </div>
+  </body>
+  <script>
+    const { createApp, ref, reactive } = Vue;
+    createApp({
+      setup() {
+        let x = ref(0);
+        let y = ref(0);
+
+        function BtnClk(Msg, $event) {
+          x.value = event.x;
+          y.value = event.y;
+          alert(Msg)
+        }
+
+        return {
+          BtnClk,
+          x,
+          y,
+        };
+      },
+    }).mount("#app");
+  </script>
+</html>

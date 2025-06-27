@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+        <div v-bind:style="{backgroundColor: 'blueviolet',fontSize: hfont+ 'px'}">
+          Hello World
+        </div>
+        <div v-bind:style="{backgroundColor: 'blueviolet',fontSize:'40px'}">
+          Hello World
+        </div>
+        <div v-bind:style="{'background-color': 'blueviolet','font-size':'30px'}">
+          Hello World
+        </div>
+        <br> <br>
+        <span class="padding-med" v-bind:class="{h1:true, 'bg-green':true}">
+          Random Text
+        </span>
+        <br> <br>
+        <span class="padding-med" v-bind:class="{h1:isMain(),'bg-green':bggreen()}">
+          Random Text2
+        </span>
+        <br> <br>
+        <span class="padding-med" v-bind:class="Mainobj">
+          Random Text3
+        </span>
+    </div>
+  </body>
+
+  <script>
+    const { createApp, ref, reactive } = Vue;
+    createApp({
+      setup() {
+        const hfont = 50;
+        const shfont = 40;
+        const sshfont = 30;
+
+        function isMain(){
+          return true;
+        }
+        function bggreen(){
+          return true;
+        };
+
+        const Mainobj = {
+          h1:true,
+          "bg-green":true,
+        };
+
+
+        return {
+          hfont,
+          shfont,
+          sshfont,
+          isMain,
+          bggreen,
+          Mainobj,
+
+        };
+      },
+    }).mount("#app");
+  </script>
+
+  <style>
+    .h1{
+      color: red;
+      font-size: 25px;
+    }
+    .padding-med{
+      padding-left: 50px;
+    }
+    .bg-green{
+      background-color: green;
+    }
+
+
+  </style>
+</html>
