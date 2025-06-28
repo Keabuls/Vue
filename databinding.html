@@ -9,8 +9,10 @@
   <body>
     <div id="app">
       <div>Learn Vue</div>
-      <input type="text" v-model="name" /> <br />
-      <input type="number" v-model="age" /> <br />
+      Name:
+      <input type="text" v-model.trim="name" /> <br />
+      Age:
+      <input type="number" v-model.lazy="age" /> <br />
       <p>{{name}} is {{age}} yo.</p>
     </div>
   </body>
