@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span>{{deneme}}</span><br>
+        <span>{{counter}}</span><br>
+        <button v-on:click="counter++">UNC BTN</button>
+        <button v-on:click="counter--">DEC BTN</button>
+    </div>
+</body>
+<script>
+    const {createApp,ref,reactive,computed,watch} = Vue;
+    createApp({
+        setup(){
+            let deneme = 13
+            let counter = ref(0)
+
+            watch(() => counter.value,(newValue,oldValue)=>{ /* watchers asynchronous'tur */
+                console.log("Counter value changed from", oldValue,"to",newValue);
+                if(newValue == 5)
+                {alert("counter value is 5")};
+            });
+
+            return{
+                deneme,
+                counter,
+            };
+        },
+    }).mount("#app");
+</script>
+</html>

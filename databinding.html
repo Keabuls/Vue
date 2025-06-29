@@ -21,6 +21,10 @@
       <div>{{getFullName}}</div>
       <button v-on:click.stop="counter++">INC button</button><!-- Bir ref değeri değiştiğinde bütün componenti  -->
       <button v-on:click.stop="counter--">DEC button</button><!--  ve fonksiyonları yenider render ediyor-->
+      <br>
+      <br>
+      First Name :
+      <input type="text" v-model="firstName">
     </div>
   </body>
   <script>
@@ -33,8 +37,8 @@
         let firstName = ref("Kaan");
         let lastName = ref("Snzm");
 
-        const getFullName = computed(() => { /* Fonksiyonu computed olarak tanımlarsak sorun ortadan kalkıyor */
-          console.log("getFullName was called");
+        const getFullName = computed((previous) => { /* Fonksiyonu computed olarak tanımlarsak sorun ortadan kalkıyor */
+          console.log(previous);                     /* computed synchronous'tur */
           return firstName.value + " " + lastName.value;
         });
 
@@ -44,6 +48,8 @@
           age,
           getFullName,
           counter,
+          firstName,
+
           
         };
       },
