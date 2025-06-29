@@ -14,18 +14,37 @@
       Age:
       <input type="number" v-model.lazy="age" /> <br />
       <p>{{name}} is {{age}} yo.</p>
+
+
+      <div>Learn Vue</div>
+      <span>{{counter}}</span>
+      <div>{{getFullName}}</div>
+      <button v-on:click.stop="counter++">INC button</button><!-- Bir ref değeri değiştiğinde bütün componenti  -->
+      <button v-on:click.stop="counter--">DEC button</button><!--  ve fonksiyonları yenider render ediyor-->
     </div>
   </body>
   <script>
-    const { createApp, ref, reactive } = Vue;
+    const { createApp, ref, reactive,computed } = Vue;
         let name = ref("Kaan");
         let age = ref(21);
     createApp({
       setup() {
+        let counter = ref(0);
+        let firstName = ref("Kaan");
+        let lastName = ref("Snzm");
 
+        const getFullName = computed(() => { /* Fonksiyonu computed olarak tanımlarsak sorun ortadan kalkıyor */
+          console.log("getFullName was called");
+          return firstName.value + " " + lastName.value;
+        });
+
+        
         return {
           name,
           age,
+          getFullName,
+          counter,
+          
         };
       },
     }).mount("#app");

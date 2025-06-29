@@ -18,7 +18,7 @@
       <input type="text" v-on:keyup.enter="sbmt" />
 
       <button class="btn" v-on:click.stop="BtnClk('BTN')">Tıkla gardaş</button>
-
+      <button class="btn" v-on:click="counter()">{{a}}</button>
       <h1>Pointer's coordinates</h1>
       <p>x: {{x}} y: {{y}}</p>
     </div>
@@ -29,6 +29,10 @@
       setup() {
         let x = ref(0);
         let y = ref(0);
+        let a = ref(0);
+        const counter = function(){
+          a.value++
+        }
 
         function sbmt(){
             console.log(this)
@@ -46,6 +50,9 @@
           x,
           y,
           sbmt,
+          counter,
+          a,
+
 
         };
       },
